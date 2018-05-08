@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>注册 - ECOSHOP</title>
+<link rel="shortcut icon" href="../static/img/favicon.ico"
+	type="image/x-icon" />
+<link rel="stylesheet" href="../static/layui/css/layui.css">
+<link rel="stylesheet" href="../static/css/register.css">
+<script type="text/javascript">
+//获取当前路径
+function basePath(){
+    //获取当前网址，如： http://localhost:8080/ems/Pages/Basic/Person.jsp
+    var curWwwPath = window.document.location.href;
+    //获取主机地址之后的目录，如： /ems/Pages/Basic/Person.jsp
+    var pathName = window.document.location.pathname;
+    var pos = curWwwPath.indexOf(pathName);
+    //获取主机地址，如： http://localhost:8080
+    var localhostPath = curWwwPath.substring(0, pos);
+    //获取带"/"的项目名，如：/ems
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    //获取项目的basePath   http://localhost:8080/ems/
+    var basePath=localhostPath+projectName+"/";
+    return basePath;
+};
+function register() {
+    $.ajax({
+    //几个参数需要注意一下
+        type: "POST",//方法类型
+        dataType: "json",//预期服务器返回的数据类型
+        url: "/userInfo.eco?doRegister" ,//请求地址
+        data: $('#form-1').serialize(),
+        success: function (result) {
+            if (result == true) {
+            	window.location.href="login.html"; 
+            };
+        },
+        error : function() {
+            alert("异常！");
+        }
+    });
+}
+</script>
+
+</head>
+
+<body style="background-image: url(../static/img/login-bg2.jpg);">
+	<form id="form-1" onsubmit="return false" method="post">
+
+		<div class="layui-main user">
+			<div class="layui-clear main">
+				<div class="layui-logo">
+					<a href="#" target="_blank"><img src="../static/img/logo-1.png" /></a>
+				</div>
+				<fieldset class="layui-elem-field layui-field-title">
+					<legend class="text-white">APP任务发布平台注册</legend>
+				</fieldset>
+				<div class="layui-form layui-form-pane">
+					<div class="layui-form">
+						<div class="layui-form-item">
+							<input class="layui-input" id="phone" name="username"
+								placeholder="请输入用户名" type="text" maxlength="11"
+								lay-verify="required|phone|regexit" autofocus="autofocus"
+								autocomplete="off">
+						</div>
+						<div class="layui-form-item">
+							<input class="layui-input" id="password" name="password"
+								placeholder="请输入密码" type="password" maxlength="20"
+								lay-verify="required|pwd" autocomplete="off">
+						</div>
+						<div class="layui-form-item">
+							<input class="layui-input" placeholder="请再次输入密码" type="password"
+								maxlength="20" lay-verify="required|rePwd" autocomplete="off">
+						</div>
+						<div class="layui-form-item form_code">
+							<input id="code" class="layui-input" placeholder="请输入图片验证码"
+								type="text" maxlength="6" lay-verify="required|code">
+							<div class="code">
+								<img id="refCode_reg_img" width="120" height="38">
+							</div>
+						</div>
+						<div class="layui-form-item form_code">
+							<input id="msg-code" class="layui-input" placeholder="请输入短信验证码"
+								type="text" maxlength="6" lay-verify="required|number|msgcode">
+							<div class="code">
+								<a id="msg-btn" class="layui-btn layui-btn-normal tel-btn"
+									style="width: 120px;">获取验证码</a>
+							</div>
+						</div>
+						<div class="layui-form-item"
+							style="float: left; margin-left: -10px;">
+							<input lay-filter="agreen-checkbox" title="我同意" type="checkbox"
+								lay-skin="primary" checked> <a href="#" target="_blank">《注册协议》</a>
+						</div>
+						<div class="layui-form-item">
+							<button id="reg" onclick="register()"
+								class="login_btn layui-btn layui-btn-radius layui-btn-normal">立即注册</button>
+						</div>
+						<div>
+							<small class="text-white">已经有账户了？</small> <a href="demo.html">点此登录</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script type="text/javascript" src="../static/layui/layui.all.js"></script>
+<script type="text/javascript" src="../static/js/register.js"></script>
+
+</html>

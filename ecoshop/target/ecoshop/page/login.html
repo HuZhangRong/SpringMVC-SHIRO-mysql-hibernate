@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>登录 </title>
+		<link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../static/layui/css/layui.css">
+		<link rel="stylesheet" href="../static/css/login.css">
+	<script type="text/javascript">
+	function login() {
+	    $.ajax({
+	    //几个参数需要注意一下
+	        type: "POST",//方法类型
+	        dataType: "json",//预期服务器返回的数据类型
+	        url: "/userInfo.eco?doLogin" ,//请求地址
+	        data: $('#form-1').serialize(),
+	      
+	    });
+	}
+	</script>
+	
+	</head>
+
+	<body>
+	<form id="form-1" action="/userInfo.eco?doLogin" method="post">
+		<div class="layui-carousel video_mask" id="login_carousel">
+			<div carousel-item>
+				<div class="carousel_div1"></div>
+				<div class="carousel_div2"></div>
+				<div class="carousel_div3"></div>
+			</div>
+			<div class="login layui-anim layui-anim-up">
+				<div class="layui-logo">
+					<a href="#" target="_blank"><img src="../static/img/logo-1.png" /></a>
+				</div>
+				<fieldset class="layui-elem-field layui-field-title">
+					<legend class="text-white">ecoshop</legend>
+				</fieldset>
+				
+				
+				<div class="layui-form">
+					<div class="layui-form-item">
+						<input type="text" id="username" name="username" lay-verify="required|account" maxlength="20" placeholder="请输入用户名" autocomplete="off" autofocus="autofocus" class="layui-input">
+					</div>
+					<div class="layui-form-item">
+						<input type="password" id="password" name="password" lay-verify="required" maxlength="20" placeholder="请输入密码" autocomplete="off" class="layui-input">
+					</div>
+					<!--  
+					<div class="layui-form-item form_code">
+						<input type="text" id="code" lay-verify="required|code" maxlength="6" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+						<div class="code"><img id="refCode_login_img" width="118" height="38"></div>
+					</div>
+-->
+					<button class="login_btn layui-btn layui-btn-radius layui-btn-normal"  type="submit">登录</button>
+					<strong class="text-white">还没有账号？ <a href="page/register.jsp" style="color: cornflowerblue;">立即注册&raquo;</a></strong>
+				
+				</div>
+				<hr class="layui-bg-gray">
+				<div class="layui-footer text-white">
+					<!-- 底部固定区域 -->
+					&copy;2018-2019 ECOSHOP有限公司版权所有
+				</div>
+			</div>
+		</div>
+</form>
+		<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+		<script type="text/javascript" src="../static/layui/layui.all.js"></script>
+		<script type="text/javascript" src="../static/js/login.js"></script>
+	</body>
+
+</html>
